@@ -1,0 +1,39 @@
+version: "3.1"
+
+actions:
+  - action_check_sufficient_funds
+
+slots:
+  billing_inquiry_type:
+    type: categorical
+    values:
+      - "unknown charge"
+      - "double billing"
+      - "billing statement"
+    mappings:
+      - type: from_llm
+
+  statement_month:
+    type: text
+    mappings:
+      - type: from_llm
+
+
+responses:
+  utter_sth_went_wrong:
+    - text: "Something went wrong."
+
+  utter_ask_billing_inquiry_type:
+    - text: "Regarding fees and billing, please choose your problem from the following: unknown charge, double billing or billing statement."
+
+  utter_ask_statement_month:
+    - text: "Which month's statement would you like to view?"
+
+  utter_billing_statement:
+    - text: "Please find your billing statement for {statement_month} here."
+
+  utter_double_billing:
+    - text: "It seems you have a doulble billing error. Please follow these instructions to resolve this issue."
+
+  utter_billing_error:
+    - text: "It seems you have an error with billing."

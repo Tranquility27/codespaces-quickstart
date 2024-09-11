@@ -1,0 +1,31 @@
+flows:
+  billing-details:
+    description: This flow lets users check their billing details.
+    steps:
+      - collect: billing_inquiry_type
+        description: The type of billing detail the user is inquiring
+        next: 
+          - if: slots.billing_inquiry_type = "unknown charge"
+            then: 
+              - link: billing-error
+          - if: slots.billing_inquiry_type = "double billing"
+            then: 
+              - link: billing-double-billing
+          - if: slots.billing_inquiry_type = "billing statement"
+            then:
+              - collect: statement_month
+              - action: utter_billing_statement
+                next: END
+          - else: sth_went_wrong
+      - action: utter_sth_went_wrong
+        id: sth_went_wrong
+
+  billing-double-billing:
+    description: This flow handles the case when users have an issue with double billing.
+    steps:
+      - action: utter_double_billing
+
+  billing-error:
+    description: This flow handles the case when users encounter an error in their billing.
+    steps:
+      - action: utter_billing_error
