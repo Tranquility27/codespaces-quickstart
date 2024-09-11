@@ -1,6 +1,13 @@
 flows:
+  application-status:
+    description: This flow allows users to ask about the status of their application, including progress, confirmation of other contract information. Questions about not receiving the application completion email belong elsewhere.
+    steps:
+      - collect: application_inquiry_type
+        description: The details of the application status the user is inquiring
+
+
   billing-details:
-    description: This flow lets users check their billing details.
+    description: This flow lets users ask for billing details and breakdowns of charges over various periods, as well as inquiries about current monthly charges for various services.
     steps:
       - collect: billing_inquiry_type
         description: The type of billing detail the user is inquiring
@@ -21,11 +28,11 @@ flows:
         id: sth_went_wrong
 
   billing-double-billing:
-    description: This flow handles the case when users have an issue with double billing.
+    description: This flow allows users to report receiving duplicate bills for their service, and ask for clarification or resolution of the issue. Utterances about duplicate payments being made belong elsewhere.
     steps:
       - action: utter_double_billing
 
   billing-error:
-    description: This flow handles the case when users encounter an error in their billing.
+    description: This flow allows users to report issues with billing, such as unknown charges, incorrect charges, charges for services not used, or suspicious activity on their credit card. Questions related to billing received after cancellation belong elsewhere.
     steps:
       - action: utter_billing_error

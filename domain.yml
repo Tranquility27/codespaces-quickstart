@@ -4,6 +4,15 @@ actions:
   - action_check_sufficient_funds
 
 slots:
+  application_inquiry_type:
+    type: categorical
+    values:
+      - "Not processing"
+      - "double billing"
+      - "billing statement"
+    mappings:
+      - type: from_llm
+
   billing_inquiry_type:
     type: categorical
     values:
@@ -24,7 +33,14 @@ responses:
     - text: "Something went wrong."
 
   utter_ask_billing_inquiry_type:
-    - text: "Regarding fees and billing, please choose your problem from the following: unknown charge, double billing or billing statement."
+    - text: "Regarding fees and billing, please choose your problem from the following:"
+      buttons:
+      - title: "I have a charge that I don't recognize."
+        payload: "unknown charge"
+      - title: "There is a double charge."
+        payload: "double billing"
+      - title: "Issuance of usage statement."
+        payload: "billing statement"
 
   utter_ask_statement_month:
     - text: "Which month's statement would you like to view?"
