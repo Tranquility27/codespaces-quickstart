@@ -32,6 +32,9 @@ responses:
   utter_sth_went_wrong:
     - text: "Something went wrong."
 
+  utter_ask_application_inquiry_type:
+    - text: "Hi"
+
   utter_ask_billing_inquiry_type:
     - text: "Regarding fees and billing, please choose your problem from the following:"
       buttons:
