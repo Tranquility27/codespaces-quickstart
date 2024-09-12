@@ -111,6 +111,7 @@ flows:
                     then:
                       - action: utter_account_change_1_2_3
                       - link: feedback
+                  - else: sth_went_wrong
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -140,6 +141,8 @@ flows:
                             then:
                               - action: utter_billing_error_1_1_2_2
                               - link: feedback
+                          - else: sth_went_wrong
+                  - else: sth_went_wrong
           - if: slots.billing_error_type = "used but cancelled"
             then: 
               - link: billing-after-cancellation
@@ -164,7 +167,7 @@ flows:
             then: 
               - collect: billing_after_flag2
                 next:
-                  - if: billing_after_flag2
+                  - if: slots.billing_after_flag2
                     then:
                       - action: utter_billing_after_1_1_1
                       - link: feedback
@@ -174,24 +177,25 @@ flows:
           - else:
               - collect: billing_after_flag3
                 next:
-                  - if: billing_after_flag3
+                  - if: slots.billing_after_flag3
                     then:
                       - action: utter_billing_after_1_2_1
                       - link: feedback
                   - else:
                       - action: utter_billing_after_1_2_2
                       - link: feedback
-      - action: utter_sth_went_wrong
-        id: sth_went_wrong
+      # - action: utter_sth_went_wrong
+      #   id: sth_went_wrong
 
   feedback: 
     description: This flow lets users provide feedback.
     steps:
       - collect: is_problem_solved
         next:
-          - if: is_problem_solved
+          - if: slots.is_problem_solved
             then: 
               - action: utter_thank_you
                 next: END
           - else:
               - action: utter_connect_human_agent
+                next: END
