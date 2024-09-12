@@ -130,8 +130,16 @@ flows:
                         next: END
                   - if: slots.billing_error_type2 = "credit statement"
                     then:
-                      - action: utter_account_change_1_1_2
-                        next: END
+                      - collect: billing_error_type3
+                        next:
+                          - if: slots.billing_error_type3 = "included"
+                            then:
+                              - action: utter_billing_error_1_1_2_1
+                                next: END
+                          - if: slots.billing_error_type3 = "not included"
+                            then:
+                              - action: utter_billing_error_1_1_2_2
+                                next: END
           - if: slots.billing_error_type = "used but cancelled"
             then: 
               - link: billing-after-cancellation
@@ -148,3 +156,42 @@ flows:
         id: sth_went_wrong
 
   billing-after-cancellation:
+    description: This flow lets users ask about receiving bills or charges after cancelling their service.
+    steps:
+      - collect: billing_after_flag
+        next: 
+          - if: slots.billing_after_flag
+            then: 
+              - collect: billing_after_flag2
+                next:
+                  - if: billing_after_flag2
+                    then:
+                      - action: utter_billing_after_1_1_1
+                        next: END
+                  - else:
+                      - action: utter_billing_after_1_1_2
+                        next: END
+          - else:
+              - collect: billing_after_flag3
+                next:
+                  - if: billing_after_flag3
+                    then:
+                      - action: utter_billing_after_1_2_1
+                        next: END
+                  - else:
+                      - action: utter_billing_after_1_2_2
+                        next: END
+      - action: utter_sth_went_wrong
+        id: sth_went_wrong
+
+  feedback: 
+    description: This flow lets users provide feedback.
+    steps:
+      - collect: is_problem_solved
+        next:
+          - if: is_problem_solved
+            then: 
+              - action: utter_thank_you
+                next: END
+          - else:
+              - action: utter_connect_human_agent
