@@ -7,7 +7,7 @@ flows:
         next:
           - if: slots.application_inquiry_type = "No progress."
             then: 
-              - action: utter_application_no_progress
+              - action: utter_application_status_1_1
                 next: END
           - if: slots.application_inquiry_type = "Confirmation."
             then: 
