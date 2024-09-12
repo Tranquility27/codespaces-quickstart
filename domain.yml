@@ -89,7 +89,7 @@ responses:
 
   # Application-Status_1_1
   utter_application_status_1_1:
-    - text: "お申し込み受付後、審査および申込内容の確認に最大3日程度かかることがあります。\n my 楽天モバイルでのお申し込み状況の表示が変わらない場合、審査が進行中ですので今しばらくお待ちください。\n お申し込み状況の確認方法は でご案内しています。\nなお、本人確認書類に不備があった場合、もしくは審査の結果お申し込みを承れない場合は、ご案内メールが届きます。"
+    - text: "お申し込み受付後、審査および申込内容の確認に最大3日程度かかることがあります。\n my 楽天モバイルでのお申し込み状況の表示が変わらない場合、審査が進行中ですので今しばらくお待ちください。\n お申し込み状況の確認方法[こちら](https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank)でご案内しています。\nなお、本人確認書類に不備があった場合、もしくは審査の結果お申し込みを承れない場合は、ご案内メールが届きます。"
 
   # Application-Status_1_2
   utter_ask_status_display_flag:
@@ -99,7 +99,7 @@ responses:
     #     payload: "/SetSlots(status_display_flag=True)"
     #   - title: "No"
     #     payload: "/SetSlots(status_display_flag=False)"
-    - text: "お申し込みの進行状況はmy 楽天モバイルの で確認できます。\n「申し込み履歴」に該当のお申し込みは表示されていますか？"
+    - text: "お申し込みの進行状況はmy 楽天モバイルの「申し込み履歴」で確認できます。\n「申し込み履歴」に該当のお申し込みは表示されていますか？"
       buttons:
       - title: "はい"
         payload: "/SetSlots(status_display_flag=True)"
