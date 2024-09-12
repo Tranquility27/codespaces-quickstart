@@ -16,26 +16,26 @@ flows:
                 - if: slots.status_display_flag
                   then: 
                     - action: utter_application_status_1_2_1
-                      link: feedback
+                    - link: feedback
                 - else: 
                     - action: utter_application_status_1_2_2
-                      link: feedback
+                    - link: feedback
           - if: slots.application_inquiry_type = "History and status."
             then:
               - action: utter_application_status_1_3
-                link: feedback
+              - link: feedback
           - if: slots.application_inquiry_type = "Contract details."
             then:
               - action: utter_application_status_1_4
-                link: feedback
+              - link: feedback
           - if: slots.application_inquiry_type = "Download contract."
             then:
               - action: utter_application_status_1_5
-                link: feedback
+              - link: feedback
           - if: slots.application_inquiry_type = "Unable to confirm."
             then:
               - action: utter_application_status_1_6
-                link: feedback
+              - link: feedback
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -55,7 +55,7 @@ flows:
           - if: slots.billing_inquiry_type = "billing statement"
             then:
               - action: utter_billing_details_1_1
-                link: feedback
+              - link: feedback
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -73,15 +73,15 @@ flows:
           - if: slots.order_delivery_type = "SIM"
             then: 
               - action: utter_delivery_status_1_1
-                link: feedback
+              - link: feedback
           - if: slots.order_delivery_type = "eSIM"
             then: 
               - action: utter_delivery_status_1_2
-                link: feedback
+              - link: feedback
           - if: slots.order_delivery_type = "Other"
             then:
               - action: utter_delivery_status_1_3
-                link: feedback
+              - link: feedback
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -94,7 +94,7 @@ flows:
           - if: slots.account_change_type = "name"
             then: 
               - action: utter_account_change_1_1
-                link: feedback
+              - link: feedback
           - if: slots.account_change_type = "contractor"
             then: 
               - collect: contractor_change_type
@@ -102,15 +102,15 @@ flows:
                   - if: slots.contractor_change_type = "can't proceed"
                     then:
                       - action: utter_account_change_1_2_1
-                        link: feedback
+                      - link: feedback
                   - if: slots.contractor_change_type = "unintentional cancel"
                     then:
                       - action: utter_account_change_1_2_2
-                        link: feedback
+                      - link: feedback
                   - if: slots.contractor_change_type = "transfer MNP"
                     then:
                       - action: utter_account_change_1_2_3
-                        link: feedback
+                      - link: feedback
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -127,7 +127,7 @@ flows:
                   - if: slots.billing_error_type2 = "usage details"
                     then:
                       - action: utter_billing_error_1_1_1
-                        link: feedback
+                      - link: feedback
                   - if: slots.billing_error_type2 = "credit statement"
                     then:
                       - collect: billing_error_type3
@@ -135,22 +135,22 @@ flows:
                           - if: slots.billing_error_type3 = "included"
                             then:
                               - action: utter_billing_error_1_1_2_1
-                                link: feedback
+                              - link: feedback
                           - if: slots.billing_error_type3 = "not included"
                             then:
                               - action: utter_billing_error_1_1_2_2
-                                link: feedback
+                              - link: feedback
           - if: slots.billing_error_type = "used but cancelled"
             then: 
               - link: billing-after-cancellation
           - if: slots.billing_error_type = "migrated"
             then:
               - action: utter_billing_error_1_2
-                link: feedback
+              - link: feedback
           - if: slots.billing_error_type = "not used"
             then:
               - action: utter_billing_error_1_3
-                link: feedback
+              - link: feedback
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -167,20 +167,20 @@ flows:
                   - if: billing_after_flag2
                     then:
                       - action: utter_billing_after_1_1_1
-                        link: feedback
+                      - link: feedback
                   - else:
                       - action: utter_billing_after_1_1_2
-                        link: feedback
+                      - link: feedback
           - else:
               - collect: billing_after_flag3
                 next:
                   - if: billing_after_flag3
                     then:
                       - action: utter_billing_after_1_2_1
-                        link: feedback
+                      - link: feedback
                   - else:
                       - action: utter_billing_after_1_2_2
-                        link: feedback
+                      - link: feedback
       - action: utter_sth_went_wrong
         id: sth_went_wrong
 
