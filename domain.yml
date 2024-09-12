@@ -58,7 +58,7 @@ responses:
 
   utter_ask_application_inquiry_type:
     # - text: "Regarding your application and contract details, which of the following are you asking about:"
-    - text: "お申し込みやご契約内容についてのお問い合わせですね。<br>どちらについてお尋ねですか？<br><br>※お申し込みの審査内容・基準について、弊社よりお答えすることはできませんのであらかじめご了承ください。"
+    - text: "お申し込みやご契約内容についてのお問い合わせですね。\n どちらについてお尋ねですか？\n \n※お申し込みの審査内容・基準について、弊社よりお答えすることはできませんのであらかじめご了承ください。"
       buttons:
       - title: "Application is not progressing."
         payload: "/SetSlots(application_inquiry_type=No progress.)"
