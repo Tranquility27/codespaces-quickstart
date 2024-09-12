@@ -7,9 +7,17 @@ slots:
   application_inquiry_type:
     type: categorical
     values:
-      - "Not processing"
-      - "double billing"
-      - "billing statement"
+      - "No progress."
+      - "Confirmation."
+      - "History and status."
+      - "Contract details."
+      - "Download contract."
+      - "Unable to confirm."
+    mappings:
+      - type: from_llm
+
+  status_display_flag:
+    type: bool
     mappings:
       - type: from_llm
 
@@ -27,13 +35,63 @@ slots:
     mappings:
       - type: from_llm
 
+  order_delivery_type:
+    type: categorical
+    values:
+      - "SIM"
+      - "eSIM"
+      - "Other"
+    mappings:
+      - type: from_llm
 
 responses:
   utter_sth_went_wrong:
     - text: "Something went wrong."
 
   utter_ask_application_inquiry_type:
-    - text: "Hi"
+    - text: "Regarding your application and contract details, which of the following are you asking about:"
+      buttons:
+      - title: "Application is not progressing."
+        payload: "No progress."
+      - title: "I want to know if my application is complete."
+        payload: "Confirmation."
+      - title: "Check application history and delivery status."
+        payload: "History and status."
+      - title: "Confirm contract details."
+        payload: "Contract details."
+      - title: "Download contract."
+        payload: "Download contract."
+      - title: "Unable to confirm contract details."
+        payload: "Unable to confirm."
+
+  utter_application_no_progress:
+    - text: "After receiving your application, it may take up to 3 days to review and confirm the application details."
+
+  utter_ask_status_display_flag:
+    - text: "You can check the progress of your application here.\n Is the corresponding application displayed?"
+      buttons:
+      - title: "Yes"
+        payload: "Yes"
+      - title: "No"
+        payload: "No"
+
+  utter_application_status_1_2_1:
+    - text: "application_status_1_2_1"
+
+  utter_application_status_1_2_2:
+    - text: "application_status_1_2_2"
+
+  utter_application_status_1_3:
+    - text: "application_status_1_3"
+
+  utter_application_status_1_4:
+    - text: "application_status_1_4"
+
+  utter_application_status_1_5:
+    - text: "application_status_1_5"
+
+  utter_application_status_1_6:
+    - text: "application_status_1_6"
 
   utter_ask_billing_inquiry_type:
     - text: "Regarding fees and billing, please choose your problem from the following:"
@@ -53,6 +111,25 @@ responses:
 
   utter_double_billing:
     - text: "It seems you have a doulble billing error. Please follow these instructions to resolve this issue."
+
+  utter_ask_order_delivery_type:
+    - text: "Which type of delivery are you asking about? Please choose from the following:"
+      buttons:
+      - title: "SIM card"
+        payload: "SIM"
+      - title: "eSIM"
+        payload: "eSIM"
+      - title: "Other products/accessories"
+        payload: "Other"
+
+  utter_delivery_status_1_1:
+    - text: "delivery_status_1_1"
+
+  utter_delivery_status_1_2:
+    - text: "delivery_status_1_2"
+
+  utter_delivery_status_1_3:
+    - text: "delivery_status_1_3"
 
   utter_billing_error:
     - text: "It seems you have an error with billing."

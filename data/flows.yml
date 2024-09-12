@@ -4,7 +4,41 @@ flows:
     steps:
       - collect: application_inquiry_type
         description: The details of the application status the user is inquiring
-
+        next:
+          - if: slots.application_inquiry_type = "No progress."
+            then: 
+              - action: utter_application_no_progress
+                next: END
+          - if: slots.application_inquiry_type = "Confirmation."
+            then: 
+              - collect: status_display_flag
+                next: 
+                - if: slots.status_display_flag
+                  then: 
+                    - action: utter_application_status_1_2_1
+                      next: END
+                - else: 
+                    - action: utter_application_status_1_2_2
+                      next: END
+          - if: slots.application_inquiry_type = "History and status."
+            then:
+              - action: utter_application_status_1_3
+                next: END
+          - if: slots.application_inquiry_type = "Contract details."
+            then:
+              - action: utter_application_status_1_4
+                next: END
+          - if: slots.application_inquiry_type = "Download contract."
+            then:
+              - action: utter_application_status_1_5
+                next: END
+          - if: slots.application_inquiry_type = "Unable to confirm."
+            then:
+              - action: utter_application_status_1_6
+                next: END
+          - else: sth_went_wrong
+      - action: utter_sth_went_wrong
+        id: sth_went_wrong
 
   billing-details:
     description: This flow lets users ask for billing details and breakdowns of charges over various periods, as well as inquiries about current monthly charges for various services.
@@ -31,6 +65,27 @@ flows:
     description: This flow allows users to report receiving duplicate bills for their service, and ask for clarification or resolution of the issue. Utterances about duplicate payments being made belong elsewhere.
     steps:
       - action: utter_double_billing
+
+  order-delivery-status:
+    description: This flow is for questions about the delivery status of various products, and inquiries about estimated delivery dates and times, and tracking information.
+    steps:
+      - collect: order_delivery_type
+        next: 
+          - if: slots.order_delivery_type = "SIM"
+            then: 
+              - action: utter_delivery_status_1_1
+                next: END
+          - if: slots.order_delivery_type = "eSIM"
+            then: 
+              - action: utter_delivery_status_1_2
+                next: END
+          - if: slots.order_delivery_type = "Other"
+            then:
+              - action: utter_delivery_status_1_3
+                next: END
+          - else: sth_went_wrong
+      - action: utter_sth_went_wrong
+        id: sth_went_wrong
 
   billing-error:
     description: This flow allows users to report issues with billing, such as unknown charges, incorrect charges, charges for services not used, or suspicious activity on their credit card. Questions related to billing received after cancellation belong elsewhere.
