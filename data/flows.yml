@@ -54,8 +54,7 @@ flows:
               - link: billing-double-billing
           - if: slots.billing_inquiry_type = "billing statement"
             then:
-              - collect: statement_month
-              - action: utter_billing_statement
+              - action: utter_billing_details_1_1
                 next: END
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
@@ -64,7 +63,7 @@ flows:
   billing-double-billing:
     description: This flow allows users to report receiving duplicate bills for their service, and ask for clarification or resolution of the issue. Utterances about duplicate payments being made belong elsewhere.
     steps:
-      - action: utter_double_billing
+      - action: utter_double_billing_1
 
   order-delivery-status:
     description: This flow is for questions about the delivery status of various products, and inquiries about estimated delivery dates and times, and tracking information.
@@ -96,10 +95,22 @@ flows:
             then: 
               - action: utter_account_change_1_1
                 next: END
-          - if: slots.account_change_type = "contracter"
+          - if: slots.account_change_type = "contractor"
             then: 
-              - action: utter_account_change_1_2
-                next: END
+              - collect: contractor_change_type
+                next:
+                  - if: slots.contractor_change_type = "can't proceed"
+                    then:
+                      - action: utter_account_change_1_2_1
+                        next: END
+                  - if: slots.contractor_change_type = "unintentional cancel"
+                    then:
+                      - action: utter_account_change_1_2_2
+                        next: END
+                  - if: slots.contractor_change_type = "transfer MNP"
+                    then:
+                      - action: utter_account_change_1_2_3
+                        next: END
           - else: sth_went_wrong
       - action: utter_sth_went_wrong
         id: sth_went_wrong
@@ -107,4 +118,33 @@ flows:
   billing-error:
     description: This flow allows users to report issues with billing, such as unknown charges, incorrect charges, charges for services not used, or suspicious activity on their credit card. Questions related to billing received after cancellation belong elsewhere.
     steps:
-      - action: utter_billing_error
+      - collect: billing_error_type
+        next: 
+          - if: slots.billing_error_type = "used"
+            then:
+              - collect: billing_error_type2
+                next:
+                  - if: slots.billing_error_type2 = "usage details"
+                    then:
+                      - action: utter_billing_error_1_1_1
+                        next: END
+                  - if: slots.billing_error_type2 = "credit statement"
+                    then:
+                      - action: utter_account_change_1_1_2
+                        next: END
+          - if: slots.billing_error_type = "used but cancelled"
+            then: 
+              - link: billing-after-cancellation
+          - if: slots.billing_error_type = "migrated"
+            then:
+              - action: utter_billing_error_1_2
+                next: END
+          - if: slots.billing_error_type = "not used"
+            then:
+              - action: utter_billing_error_1_3
+                next: END
+          - else: sth_went_wrong
+      - action: utter_sth_went_wrong
+        id: sth_went_wrong
+
+  billing-after-cancellation:

@@ -48,7 +48,34 @@ slots:
     type: categorical
     values:
       - "name"
-      - "contracter"
+      - "contractor"
+    mappings:
+      - type: from_llm
+
+  contractor_change_type:
+    type: categorical
+    values:
+      - "can't proceed"
+      - "unintentional cancel"
+      - "transfer MNP"
+    mappings:
+      - type: from_llm
+
+  billing_error_type:
+    type: categorical
+    values:
+      - "used"
+      - "used but cancelled"
+      - "migrated"
+      - "not used"
+    mappings:
+      - type: from_llm
+
+  billing_error_type2:
+    type: categorical
+    values:
+      - "usage details"
+      - "credit statement"
     mappings:
       - type: from_llm
 
@@ -56,6 +83,7 @@ responses:
   utter_sth_went_wrong:
     - text: "Something went wrong."
 
+## Application-Status
   # Application-Status_1
   utter_ask_application_inquiry_type:
     # - text: "Regarding your application and contract details, which of the following are you asking about:"
@@ -89,7 +117,7 @@ responses:
 
   # Application-Status_1_1
   utter_application_status_1_1:
-    - text: "お申し込み受付後、審査および申込内容の確認に最大3日程度かかることがあります。\n my 楽天モバイルでのお申し込み状況の表示が変わらない場合、審査が進行中ですので今しばらくお待ちください。\n お申し込み状況の確認方法[こちら](https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank)でご案内しています。\nなお、本人確認書類に不備があった場合、もしくは審査の結果お申し込みを承れない場合は、ご案内メールが届きます。"
+    - text: "お申し込み受付後、審査および申込内容の確認に最大3日程度かかることがあります。\n my 楽天モバイルでのお申し込み状況の表示が変わらない場合、審査が進行中ですので今しばらくお待ちください。\n お申し込み状況の確認方法こちらでご案内しています。\nなお、本人確認書類に不備があった場合、もしくは審査の結果お申し込みを承れない場合は、ご案内メールが届きます。"
 
   # Application-Status_1_2
   utter_ask_status_display_flag:
@@ -108,79 +136,160 @@ responses:
 
   # Application-Status_1_2_1
   utter_application_status_1_2_1:
-    - text: "該当の申込番号の下に「申し込み受付」と表示されている場合、本人確認書類またはデータを審査中です。\n審査および申込内容の確認に最大3日程度かかることがありますので、メールでのご案内があるまでお待ちください。\n「お届け準備中」または「お届け中」のステータスの場合、お申し込みと審査が完了しています。\n※システムへの反映状況により、「お届け準備中」や「お届け中」のまま数日経過する場合があります。\n注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。\nそれ以外の表示が出ている場合についてはで詳しくご案内しています。"
+    - text: "該当の申込番号の下に「申し込み受付」と表示されている場合、本人確認書類またはデータを審査中です。\n審査および申込内容の確認に最大3日程度かかることがありますので、メールでのご案内があるまでお待ちください。\n「お届け準備中」または「お届け中」のステータスの場合、お申し込みと審査が完了しています。\n※システムへの反映状況により、「お届け準備中」や「お届け中」のまま数日経過する場合があります。\n注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。\nそれ以外の表示が出ている場合についてはこちらで詳しくご案内しています。"
 
   # Application-Status_1_2_2
   utter_application_status_1_2_2:
-    - text: "お申し込みができていない、もしくはログインしている楽天IDがお申し込み時のものとは異なっている可能性があります。\nお申し込み時に利用した楽天IDをご確認のうえ、再度ログインをお試しください。\nまた、ご家族のID等、別の楽天IDでログインしていないかご確認ください。\nお心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。\nお申し込みが問題なく完了しているかの確認について、詳しくは をご確認ください。"
+    - text: "お申し込みができていない、もしくはログインしている楽天IDがお申し込み時のものとは異なっている可能性があります。\n お申し込み時に利用した楽天IDをご確認のうえ、再度ログインをお試しください。\n また、ご家族のID等、別の楽天IDでログインしていないかご確認ください。\n お心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。\n お申し込みが問題なく完了しているかの確認について、詳しくはこちらをご確認ください。"
 
   # Application-Status_1_3
   utter_application_status_1_3:
-    - text: "お申し込み履歴や配送状況について、から確認することができます。\n確認方法については でご案内しています。\nシステムへの反映状況により、お届け準備中やお届け中のまま数日経過する場合があります。\n注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。"
+    - text: "お申し込み履歴や配送状況について、「申し込み履歴」から確認することができます。\n 確認方法についてはこちらでご案内しています。\n システムへの反映状況により、お届け準備中やお届け中のまま数日経過する場合があります。\n 注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。"
 
   # Application-Status_1_4
   utter_application_status_1_4:
-    - text: "my 楽天モバイルの で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。\nまた「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルのをご確認ください。\n申し込み内容の確認方法について詳しくはをご確認ください。"
+    - text: "my 楽天モバイルの「契約プラン」で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。\n また「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「申し込み履歴」をご確認ください。\n 申し込み内容の確認方法について詳しくはこちらをご確認ください。"
 
   # Application-Status_1_5
   utter_application_status_1_5:
-    - text: "my 楽天モバイルのでご契約時の契約書をダウンロードできます。\nまた「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルのをご確認ください。\n契約書の確認・ダウンロード方法について詳しくはをご確認ください。"
+    - text: "my 楽天モバイルの「契約情報」でご契約時の契約書をダウンロードできます。\n また「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「申し込み履歴」をご確認ください。\n 契約書の確認・ダウンロード方法について詳しくは>こちらをご確認ください。"
 
   # Application-Status_1_6
   utter_application_status_1_6:
-    - text: "my 楽天モバイルので現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。\nまた「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルのをご確認ください。\nmy 楽天モバイルに申込番号が表示されない、製品の購入履歴が見当たらない場合は、ログインしている楽天IDでのお申し込みが完了していません。\nログアウト後、お申し込みいただいた際の楽天IDをご確認のうえ、再度ログインをお試しください。\nご家族のID等、別の楽天IDでログインしていないかご確認ください。\n【ログアウト方法】\n my 楽天モバイル画面右上の三本線メニュー最下部から「ログアウト」を選択\nお申し込み完了のメールを受け取っておらず、お心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。\nmy 楽天モバイルにログインできない場合はをご確認ください。"
+    - text: " my 楽天モバイルの「契約プラン」で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。\n また「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「申し込み履歴」をご確認ください。\n my 楽天モバイルに申込番号が表示されない、製品の購入履歴が見当たらない場合は、ログインしている楽天IDでのお申し込みが完了していません。\n ログアウト後、お申し込みいただいた際の楽天IDをご確認のうえ、再度ログインをお試しください。\n ご家族のID等、別の楽天IDでログインしていないかご確認ください。\n 【ログアウト方法】\n my 楽天モバイル画面右上の三本線メニュー最下部から「ログアウト」を選択\n お申し込み完了のメールを受け取っておらず、お心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。\n my 楽天モバイルにログインできない場合はこちらをご確認ください。"
 
+## Billing-Details
+  # Billing-Details_1
   utter_ask_billing_inquiry_type:
-    - text: "Regarding fees and billing, please choose your problem from the following:"
+    # - text: "Regarding fees and billing, please choose your problem from the following:"
+    #   buttons:
+    #   - title: "I have a charge that I don't recognize."
+    #     payload: "/SetSlots(billing_inquiry_type=unknown charge)"
+    #   - title: "There is a double charge."
+    #     payload: "/SetSlots(billing_inquiry_type=double billing)"
+    #   - title: "Issuance of usage statement."
+    #     payload: "/SetSlots(billing_inquiry_type=billing statement)"
+    - text: " 料金やご請求についてですね。\n my 楽天モバイルの「利用料金」より請求金額の内訳をご確認いただけます。\n 毎月12～20日に配信される「【重要】楽天モバイル ご請求額確定のお知らせ」という件名のメールでもご請求金額をご案内しています。\n お困りごとを次の中からお選びください。"
       buttons:
-      - title: "I have a charge that I don't recognize."
+      - title: "身に覚えない請求がある"
         payload: "/SetSlots(billing_inquiry_type=unknown charge)"
-      - title: "There is a double charge."
+      - title: "二重に請求がある"
         payload: "/SetSlots(billing_inquiry_type=double billing)"
-      - title: "Issuance of usage statement."
+      - title: "利用明細書の発行"
         payload: "/SetSlots(billing_inquiry_type=billing statement)"
 
-  utter_ask_statement_month:
-    - text: "Which month's statement would you like to view?"
+  # utter_ask_statement_month:
+  #   - text: "Which month's statement would you like to view?"
 
-  utter_billing_statement:
-    - text: "Please find your billing statement for {statement_month} here."
+  # Billing-Details_1_1
+  utter_billing_details_1_1:
+    - text: " my 楽天モバイルの「利用料金」画面上部から、確認したい利用月を選択し、「利用明細を見る」を押してください。\n 画面を下にスクロールして「利用明細・支払い証明書」で各種明細をダウンロードし、ご利用の製品に保存してください。OSごとの詳しい手順はこちらでご案内しています。\n 印刷方法についてはこちらをご覧ください。\n 各種証明書の郵送については、1通あたり「書面郵送サービス料税込330円」のご請求及びお客様のお手元に届くまで数日お時間をいただいております。\n 郵送をご希望の場合は、次のアンケートにご回答後、「解決していない」を押すとオペレータが対応いたします。"
 
-  utter_double_billing:
-    - text: "It seems you have a doulble billing error. Please follow these instructions to resolve this issue."
+## Billing-Double_Billing
+  # Billing-Double_Billing_1
+  utter_double_billing_1:
+    - text: "二重での請求またはお支払いについてですね。\n カード会社からの請求タイミングによっては、前月と前々月利用分のプラン料金の引き落としが同月に行われる場合があります。\n 詳しくはこちらをご確認ください。\n 毎月の利用料の請求・引き落としのタイミングについて、詳しくはこちらをご確認ください。\n 次の案内で、同月に二度の請求に関する、よくあるケースをご紹介します。\n ■楽天モバイル買い替え超トクプログラムをご契約の場合\n プラン料金とは別で請求されます。利用明細についてはこちらをご確認ください。\n ■楽天モバイル（ドコモ・au回線）から移行した場合\n ご利用状況に応じて楽天モバイル（ドコモ・au回線）とRakuten最強プランの両方から請求させていただく場合があります。詳しくはこちらをご確認ください。\n ■未払い料金をmy 楽天モバイルとコンビニ払込票（ハガキ）で二重で支払った場合\n 重複した料金は預り金となり、次回以降の請求時に使用されます。お客様でのお手続きは不要です。\n ■その他\n これらに心当たりがない場合、ご家族やご友人の契約のお支払い方法が、お客様のクレジットカードなどに設定されている可能性があります。\n お支払い方法は、それぞれのご契約者様のmy 楽天モバイルの「支払い情報」で確認をお願いします。"
 
+## Order-Delivery-Status
+  # Order-Delivery-Status_1
   utter_ask_order_delivery_type:
-    - text: "Which type of delivery are you asking about? Please choose from the following:"
+    # - text: "Which type of delivery are you asking about? Please choose from the following:"
+    #   buttons:
+    #   - title: "SIM card"
+    #     payload: "/SetSlots(order_delivery_type=SIM)"
+    #   - title: "eSIM"
+    #     payload: "/SetSlots(order_delivery_type=eSIM)"
+    #   - title: "Other products/accessories"
+    #     payload: "/SetSlots(order_delivery_type=Other)"
+    - text: "配送についてですね。\n どちらの配送についてお尋ねですか？\n ※お申し込みのSIMタイプの確認方法はこちらからご確認ください。"
       buttons:
-      - title: "SIM card"
+      - title: "SIMカード"
         payload: "/SetSlots(order_delivery_type=SIM)"
       - title: "eSIM"
         payload: "/SetSlots(order_delivery_type=eSIM)"
-      - title: "Other products/accessories"
+      - title: "その他の製品・アクセサリ"
         payload: "/SetSlots(order_delivery_type=Other)"
 
+  # Order-Delivery-Status_1_1
   utter_delivery_status_1_1:
-    - text: "delivery_status_1_1"
+    - text: "SIMカードについては、Webでお申し込みの場合、お申し込み完了から最短2日～1週間ほどでお届けします。\n my 楽天モバイルの「申し込み履歴」画面からお申し込み状況や配送状況をご確認いただけます。\n **〈お届け準備中〉**\n 製品の発送準備中です。製品の発送をお待ちください。更新には時間がかかる場合がございます。\n **〈お届け中〉**\n 製品を配送中です。配送状況については、伝票番号にてご確認いただけます。\n 【注意事項】\n なお、SIMカードと製品を同時購入している場合、SIMカードと製品を一緒に配送いたします。そのため、製品が予約販売や自然災害などにより配送が遅れている場合は、SIMカードも同様に配送に遅れが生じます。今しばらくお待ちください。\n こちらも併せてご覧ください。<ul><li>お申し込み完了から発送までに関するよくあるお問い合わせ</li><li>申し込み完了後、商品が届きません。どうすればよいですか？</li></ul>"
 
+  # Order-Delivery-Status_1_2
   utter_delivery_status_1_2:
-    - text: "delivery_status_1_2"
+    - text: "eSIMをWebでお申し込みの場合、開通に必要なQRコードが表示されたスタートガイドを、お申し込み完了から最短2日～1週間ほどでお届けします。\n ※「AIかんたん本人確認（eKYC）」でeSIMのみをお申し込みの場合、スタートガイドの配送はありません。\n my 楽天モバイルの「申し込み履歴」画面からお申し込み状況や配送状況をご確認いただけます。\n **〈お届け準備中〉**\n スタートガイドの発送準備中です。発送をお待ちください。更新には時間がかかる場合がございます。\n **〈お届け中〉**\n スタートガイドを配送中です。配送状況については、伝票番号にてご確認いただけます。\n 【注意事項】\n なお、eSIMと製品を同時購入している場合、スタートガイドと製品を一緒に配送いたします。そのため、製品が予約販売や自然災害などにより配送が遅れている場合は、スタートガイドも同様に配送に遅れが生じます。今しばらくお待ちください。\n こちらも併せてご覧ください。<ul><li>お申し込み完了から発送までに関するよくあるお問い合わせ</li><li>申し込み完了後、商品が届きません。どうすればよいですか？</li></ul>"
 
+  # Order-Delivery-Status_1_3
   utter_delivery_status_1_3:
-    - text: "delivery_status_1_3"
+    - text: "Webでお申し込みの場合、お申し込み完了から最短2日～1週間ほどでお届けします。<br><br>最新のiPhoneシリーズについては製品の在庫状況によってお届け時期が異なります。詳しくはこちら</a>をご確認ください。<br><br>my 楽天モバイルの「申し込み履歴」画面からお申し込み状況や配送状況をご確認いただけます。<br><br><b>〈お届け準備中〉</b><br>製品の発送準備中です。製品の発送をお待ちください。更新には時間がかかる場合がございます。<br><br><b>〈お届け中〉</b><br>製品を配送中です。配送状況については、伝票番号にてご確認いただけます。<br><br>こちらも併せてご覧ください。<ul><li>お申し込み完了から発送までに関するよくあるお問い合わせ</li><li>申し込み完了後、商品が届きません。どうすればよいですか？</li><li>Apple製品（iPhone、Apple Watch）のWebお申し込み在庫状況一覧</li></ul>"
 
+## Account-Details-Change-Status
+  # Account-Details-Change-Status_1
   utter_ask_account_change_type:
-    - text: "Regarding name change and transfers, which of the following are you asking about:"
+    # - text: "Regarding name change and transfers, which of the following are you asking about:"
+    #   buttons:
+    #   - title: "Change surname/name"
+    #     payload: "/SetSlots(account_change_type=name)"
+    #   - title: "Change contractor (assignment)"
+    #     payload: "/SetSlots(account_change_type=contractor)"
+    - text: "名義変更や譲渡についてですね。<br>どちらについてお尋ねですか？"
       buttons:
-      - title: "Change surname/name"
+      - title: "改姓・改名"
         payload: "/SetSlots(account_change_type=name)"
-      - title: "Change contracter (assignment)"
-        payload: "/SetSlots(account_change_type=contracter)"
+      - title: "契約者の変更（譲渡)"
+        payload: "/SetSlots(account_change_type=contractor)"
 
+  # Account-Details-Change-Status_1_1
   utter_account_change_1_1:
-    - text: "account_change_1_1"
+    - text: "改姓・改名のお手続きは、必要書類を郵送いただいたのち、完了まで約2週間ほどかかります。<br><br>名義変更完了後、ご登録メールアドレス宛に完了のお知らせメールを送信いたします。my 楽天モバイルから変更された名義をご確認ください。<br>詳しい手順はこちらをご覧ください。<br><br>お知らせメールが届かない場合、ご登録のメールアドレスに間違いがないかのご確認、または迷惑メールフォルダをご確認ください。"
 
-  utter_account_change_1_2:
-    - text: "account_change_1_1"
+  # Account-Details-Change-Status_1_2
+  utter_ask_contractor_change_type:
+    - text: "契約者変更（譲渡）はmy 楽天モバイルでお手続きいただけます。<br>お手続きに必要なものと手順をご確認うえ、お手続きください。<br><br>なお、お手続き期間の目安は、新しいご契約者様の本人確認の方法によって異なります。詳しくはこちらをご確認ください。<br><br>それ以外のお困りごとは以下からお選びください。"
+      buttons:
+      - title: "手続きが進められない"
+        payload: "/SetSlots(contractor_change_type=can't proceed)"
+      - title: "意図せずキャンセルになる"
+        payload: "/SetSlots(contractor_change_type=unintentional cancel)"
+      - title: "MNP転入と譲渡を同時にしたい"
+        payload: "/SetSlots(contractor_change_type=transfer MNP)"
 
-  utter_billing_error:
-    - text: "It seems you have an error with billing."
+  # Account-Details-Change-Status_1_2_1
+  utter_account_change_1_2_1:
+    - text: "my 楽天モバイルに「契約者変更のお手続きをすることができません」と表示される場合など、お手続きの途中でのお困りごとはトラブルシューティング</a>をご覧ください。<br><br>また、本人確認書類の不備があった場合はお手続きはキャンセルされ、お知らせのメールが届きます。よくある不備理由をご確認いただき、再度お手続きをお願いいたします。<br><br>お知らせメールが届かない場合、ご登録のメールアドレスに間違いがないかのご確認、または迷惑メールフォルダをご確認ください。"
+
+  # Account-Details-Change-Status_1_2_2
+  utter_account_change_1_2_2:
+     text: "意図せずキャンセルになってしまう理由として以下があげられます。<ul><li>本人確認書類に不備がある</li><li>現在のご契約者様/新しいご契約者様いずれかに未払いの請求がある</li><li>新しいご契約者様が「本人確認完了のお知らせ」の通知書を受け取らなかった</li></ul>上記の場合お手続きはキャンセルされ、お知らせのメールが届きます。よくある不備理由をご確認いただき、再度お手続きをお願いいたします。<br><br>【新しいご契約者様が未成年の場合】<br>ご入力いただいた親権者情報と、ご提示いただいた法定代理人同意書 兼 支払名義人同意書に記載されている内容が一致している必要があります。<br>内容をご確認いただき、再度お手続きをお願いいたします。"
+
+  # Account-Details-Change-Status_1_2_3
+  utter_account_change_1_2_3:
+    - text: "Webでは乗り換え（MNP転入）は同じ名義でのみの受け付けとなり、名義変更（譲渡）と同時には行えません。<br><br>名義が異なる場合は、現在契約中の携帯電話会社で名義変更（譲渡）した後に、乗り換え手続きを進めてください。<br><br>ショップでは乗り換え（MNP転入）と名義変更（譲渡）を同時にお申込みいただけます。詳しくはこちらをご確認ください。"
+
+## Billing-Error
+  # Billing-Error_1
+  utter_ask_billing_error_type:
+    - text: "利用した覚えがない請求があるということですね。<br><br>楽天モバイルのご利用状況を教えてください。"
+      buttons:
+      - title: "利用している"
+        payload: "/SetSlots(billing_error_type=used)"
+      - title: "利用していたが解約済み"
+        payload: "/SetSlots(billing_error_type=used but cancelled)"
+      - title: "ドコモ回線・au回線から移行した"
+        payload: "/SetSlots(billing_error_type=migrated)"
+      - title: "利用していない"
+        payload: "/SetSlots(billing_error_type=not used)"
+
+# Billing-Error_1_1
+utter_ask_billing_error_type2:
+    - text: "請求金額が高いと感じたきっかけは何ですか？"
+      buttons:
+      - title: "利用明細を確認した"
+        payload: "/SetSlots(billing_error_type2=usage details)"
+      - title: "クレジットカードの明細等に<br>「楽天○○」とあった"
+        payload: "/SetSlots(billing_error_type2=credit statement)"
+
+# Billing-Error_1_1_1
+utter_billing_error_1_1_1:
+  - text: "以下の可能性が考えられます。<ul><li>ご家族やご友人のご契約がお客様のお支払に紐づいている</li><li>オプションの契約が解約されずに残っている</li><li>LinkアプリではなくOS標準の電話アプリを使用している</li><li>楽天モバイルのご請求の中で、プラン料金の他に端末代金の請求がある</li></ul>請求金額が高いと感じる事例と対応方法については、こちらでご紹介しています。"
+
+# Billig-Error_1_1_2
