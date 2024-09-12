@@ -8,7 +8,7 @@ flows:
           - if: slots.application_inquiry_type = "No progress."
             then: 
               - action: utter_application_status_1_1
-                link: feedback
+              - link: feedback
           - if: slots.application_inquiry_type = "Confirmation."
             then: 
               - collect: status_display_flag
