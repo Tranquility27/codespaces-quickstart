@@ -89,7 +89,7 @@ responses:
 
   # Application-Status_1_1
   utter_application_status_1_1:
-    - text: "お申し込み受付後、審査および申込内容の確認に最大3日程度かかることがあります。<br><br>my 楽天モバイルでのお申し込み状況の表示が変わらない場合、審査が進行中ですので今しばらくお待ちください。<br><br>お申し込み状況の確認方法は<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank">こちら</a>でご案内しています。<br><br>なお、本人確認書類に不備があった場合、もしくは審査の結果お申し込みを承れない場合は、ご案内メールが届きます。"
+    - text: "お申し込み受付後、審査および申込内容の確認に最大3日程度かかることがあります。\n my 楽天モバイルでのお申し込み状況の表示が変わらない場合、審査が進行中ですので今しばらくお待ちください。\nお申し込み状況の確認方法は<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank">こちら</a>でご案内しています。\nなお、本人確認書類に不備があった場合、もしくは審査の結果お申し込みを承れない場合は、ご案内メールが届きます。"
 
   # Application-Status_1_2
   utter_ask_status_display_flag:
@@ -99,7 +99,7 @@ responses:
     #     payload: "/SetSlots(status_display_flag=True)"
     #   - title: "No"
     #     payload: "/SetSlots(status_display_flag=False)"
-    - text: "お申し込みの進行状況はmy 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」で確認できます。<br><br>「申し込み履歴」に該当のお申し込みは表示されていますか？"
+    - text: "お申し込みの進行状況はmy 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」で確認できます。\n「申し込み履歴」に該当のお申し込みは表示されていますか？"
       buttons:
       - title: "はい"
         payload: "/SetSlots(status_display_flag=True)"
@@ -108,27 +108,27 @@ responses:
 
   # Application-Status_1_2_1
   utter_application_status_1_2_1:
-    - text: "該当の申込番号の下に「申し込み受付」と表示されている場合、本人確認書類またはデータを審査中です。<br><br>審査および申込内容の確認に最大3日程度かかることがありますので、メールでのご案内があるまでお待ちください。<br><br>「お届け準備中」または「お届け中」のステータスの場合、お申し込みと審査が完了しています。<br><br>※システムへの反映状況により、「お届け準備中」や「お届け中」のまま数日経過する場合があります。<br>注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。<br><br>それ以外の表示が出ている場合については<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001364/#:~:text=%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82-,%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%9F%E7%94%BB%E9%9D%A2%E3%81%A8%E5%AF%BE%E5%BF%9C%E6%96%B9%E6%B3%95,-%E3%80%8C%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%8F%97%E4%BB%98%E3%80%8D%E3%81%A8" target="_blank">こちら</a>で詳しくご案内しています。"
+    - text: "該当の申込番号の下に「申し込み受付」と表示されている場合、本人確認書類またはデータを審査中です。\n審査および申込内容の確認に最大3日程度かかることがありますので、メールでのご案内があるまでお待ちください。\n「お届け準備中」または「お届け中」のステータスの場合、お申し込みと審査が完了しています。\n※システムへの反映状況により、「お届け準備中」や「お届け中」のまま数日経過する場合があります。\n注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。\nそれ以外の表示が出ている場合については<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001364/#:~:text=%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82-,%E8%A1%A8%E7%A4%BA%E3%81%95%E3%82%8C%E3%81%9F%E7%94%BB%E9%9D%A2%E3%81%A8%E5%AF%BE%E5%BF%9C%E6%96%B9%E6%B3%95,-%E3%80%8C%E7%94%B3%E3%81%97%E8%BE%BC%E3%81%BF%E5%8F%97%E4%BB%98%E3%80%8D%E3%81%A8" target="_blank">こちら</a>で詳しくご案内しています。"
 
   # Application-Status_1_2_2
   utter_application_status_1_2_2:
-    - text: "お申し込みができていない、もしくはログインしている楽天IDがお申し込み時のものとは異なっている可能性があります。<br><br>お申し込み時に利用した楽天IDをご確認のうえ、再度ログインをお試しください。<br>また、ご家族のID等、別の楽天IDでログインしていないかご確認ください。<br><br>お心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。<br><br>お申し込みが問題なく完了しているかの確認について、詳しくは<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank">こちら</a>をご確認ください。"
+    - text: "お申し込みができていない、もしくはログインしている楽天IDがお申し込み時のものとは異なっている可能性があります。\nお申し込み時に利用した楽天IDをご確認のうえ、再度ログインをお試しください。\nまた、ご家族のID等、別の楽天IDでログインしていないかご確認ください。\nお心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。\nお申し込みが問題なく完了しているかの確認について、詳しくは<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank">こちら</a>をご確認ください。"
 
   # Application-Status_1_3
   utter_application_status_1_3:
-    - text: "お申し込み履歴や配送状況について、「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」から確認することができます。<br>確認方法については<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001364/" target="_blank">こちら</a>でご案内しています。<br><br>システムへの反映状況により、お届け準備中やお届け中のまま数日経過する場合があります。<br>注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。"
+    - text: "お申し込み履歴や配送状況について、「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」から確認することができます。\n確認方法については<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001364/" target="_blank">こちら</a>でご案内しています。\nシステムへの反映状況により、お届け準備中やお届け中のまま数日経過する場合があります。\n注文は正常に処理されていますので、恐れ入りますが到着までいましばらくお待ちください。"
 
   # Application-Status_1_4
   utter_application_status_1_4:
-    - text: "my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#plans" target="_blank">契約プラン</a>」で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。<br><br>また「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」をご確認ください。<br><br>申し込み内容の確認方法について詳しくは<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank">こちら</a>をご確認ください。"
+    - text: "my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#plans" target="_blank">契約プラン</a>」で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。\nまた「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」をご確認ください。\n申し込み内容の確認方法について詳しくは<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001827/" target="_blank">こちら</a>をご確認ください。"
 
   # Application-Status_1_5
   utter_application_status_1_5:
-    - text: "my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#contracts" target="_blank">契約情報</a>」でご契約時の契約書をダウンロードできます。<br><br>また「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」をご確認ください。<br><br>契約書の確認・ダウンロード方法について詳しくは<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001907/" target="_blank">こちら</a>をご確認ください。"
+    - text: "my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#contracts" target="_blank">契約情報</a>」でご契約時の契約書をダウンロードできます。\nまた「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」をご確認ください。\n契約書の確認・ダウンロード方法について詳しくは<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001907/" target="_blank">こちら</a>をご確認ください。"
 
   # Application-Status_1_6
   utter_application_status_1_6:
-    - text: "my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#plans" target="_blank">契約プラン</a>」で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。<br><br>また「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」をご確認ください。<br><br>my 楽天モバイルに申込番号が表示されない、製品の購入履歴が見当たらない場合は、ログインしている楽天IDでのお申し込みが完了していません。<br><br>ログアウト後、お申し込みいただいた際の楽天IDをご確認のうえ、再度ログインをお試しください。<br>ご家族のID等、別の楽天IDでログインしていないかご確認ください。<br><br>【ログアウト方法】<br>my 楽天モバイル画面右上の三本線メニュー最下部から「ログアウト」を選択<br><br>お申し込み完了のメールを受け取っておらず、お心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。<br><br>my 楽天モバイルにログインできない場合は<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001207/" target="_blank">こちら</a>をご確認ください。"
+    - text: "my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#plans" target="_blank">契約プラン</a>」で現在ご契約中のプラン、オプションサービス、サービス利用開始日を確認できます。\nまた「準備中」や「契約内容がありません」と表示される場合は、my 楽天モバイルの「<a href="https://portal.mobile.rakuten.co.jp//dashboard#orders" target="_blank">申し込み履歴</a>」をご確認ください。\nmy 楽天モバイルに申込番号が表示されない、製品の購入履歴が見当たらない場合は、ログインしている楽天IDでのお申し込みが完了していません。\nログアウト後、お申し込みいただいた際の楽天IDをご確認のうえ、再度ログインをお試しください。\nご家族のID等、別の楽天IDでログインしていないかご確認ください。\n【ログアウト方法】\nmy 楽天モバイル画面右上の三本線メニュー最下部から「ログアウト」を選択\nお申し込み完了のメールを受け取っておらず、お心当たりのある楽天IDでログインしても申し込み履歴が表示されない場合は、お手数ですが、再度お申し込みをお願いします。\nmy 楽天モバイルにログインできない場合は<a href="https://network.mobile.rakuten.co.jp/faq/detail/00001207/" target="_blank">こちら</a>をご確認ください。"
 
   utter_ask_billing_inquiry_type:
     - text: "Regarding fees and billing, please choose your problem from the following:"
