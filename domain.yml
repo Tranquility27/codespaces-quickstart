@@ -44,6 +44,14 @@ slots:
     mappings:
       - type: from_llm
 
+  account_change_type:
+    type: categorical
+    values:
+      - "name"
+      - "contracter"
+    mappings:
+      - type: from_llm
+
 responses:
   utter_sth_went_wrong:
     - text: "Something went wrong."
@@ -54,15 +62,15 @@ responses:
       - title: "Application is not progressing."
         payload: "/SetSlots(application_inquiry_type=No progress.)"
       - title: "I want to know if my application is complete."
-        payload: "Confirmation."
+        payload: "/SetSlots(application_inquiry_type=Confirmation.)"
       - title: "Check application history and delivery status."
-        payload: "History and status."
+        payload: "/SetSlots(application_inquiry_type=History and status.)"
       - title: "Confirm contract details."
-        payload: "Contract details."
+        payload: "/SetSlots(application_inquiry_type=Contract details.)"
       - title: "Download contract."
-        payload: "Download contract."
+        payload: "/SetSlots(application_inquiry_type=Download contract.)"
       - title: "Unable to confirm contract details."
-        payload: "Unable to confirm."
+        payload: "/SetSlots(application_inquiry_type=Unable to confirm.)"
 
   utter_application_no_progress:
     - text: "After receiving your application, it may take up to 3 days to review and confirm the application details."
@@ -71,9 +79,9 @@ responses:
     - text: "You can check the progress of your application here.\n Is the corresponding application displayed?"
       buttons:
       - title: "Yes"
-        payload: "Yes"
+        payload: "/SetSlots(status_display_flag=True)"
       - title: "No"
-        payload: "No"
+        payload: "/SetSlots(status_display_flag=False)"
 
   utter_application_status_1_2_1:
     - text: "application_status_1_2_1"
@@ -101,8 +109,7 @@ responses:
       - title: "There is a double charge."
         payload: "/SetSlots(billing_inquiry_type=double billing)"
       - title: "Issuance of usage statement."
-        # "/SetSlots(billing_inquiry_type=billing statement)"
-        payload: "billing statement"
+        payload: "/SetSlots(billing_inquiry_type=billing statement)"
 
   utter_ask_statement_month:
     - text: "Which month's statement would you like to view?"
@@ -117,11 +124,11 @@ responses:
     - text: "Which type of delivery are you asking about? Please choose from the following:"
       buttons:
       - title: "SIM card"
-        payload: "SIM"
+        payload: "/SetSlots(order_delivery_type=SIM)"
       - title: "eSIM"
-        payload: "eSIM"
+        payload: "/SetSlots(order_delivery_type=eSIM)"
       - title: "Other products/accessories"
-        payload: "Other"
+        payload: "/SetSlots(order_delivery_type=Other)"
 
   utter_delivery_status_1_1:
     - text: "delivery_status_1_1"
@@ -131,6 +138,20 @@ responses:
 
   utter_delivery_status_1_3:
     - text: "delivery_status_1_3"
+
+  utter_ask_account_change_type:
+    - text: "Regarding name change and transfers, which of the following are you asking about:"
+      buttons:
+      - title: "Change surname/name"
+        payload: "/SetSlots(account_change_type=name)"
+      - title: "Change contracter (assignment)"
+        payload: "/SetSlots(account_change_type=contracter)"
+
+  utter_account_change_1_1:
+    - text: "account_change_1_1"
+
+  utter_account_change_1_2:
+    - text: "account_change_1_1"
 
   utter_billing_error:
     - text: "It seems you have an error with billing."

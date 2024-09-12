@@ -87,6 +87,23 @@ flows:
       - action: utter_sth_went_wrong
         id: sth_went_wrong
 
+  account-details-change-status:
+    description: This flow lets users inquire about the progress of the personal information change they requested. Especially about the status and the duration of the name change process.
+    steps:
+      - collect: account_change_type
+        next: 
+          - if: slots.account_change_type = "name"
+            then: 
+              - action: utter_account_change_1_1
+                next: END
+          - if: slots.account_change_type = "contracter"
+            then: 
+              - action: utter_account_change_1_2
+                next: END
+          - else: sth_went_wrong
+      - action: utter_sth_went_wrong
+        id: sth_went_wrong
+
   billing-error:
     description: This flow allows users to report issues with billing, such as unknown charges, incorrect charges, charges for services not used, or suspicious activity on their credit card. Questions related to billing received after cancellation belong elsewhere.
     steps:
