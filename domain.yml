@@ -52,7 +52,7 @@ responses:
     - text: "Regarding your application and contract details, which of the following are you asking about:"
       buttons:
       - title: "Application is not progressing."
-        payload: "No progress."
+        payload: "/SetSlots(application_inquiry_type=No progress.)"
       - title: "I want to know if my application is complete."
         payload: "Confirmation."
       - title: "Check application history and delivery status."
@@ -97,11 +97,11 @@ responses:
     - text: "Regarding fees and billing, please choose your problem from the following:"
       buttons:
       - title: "I have a charge that I don't recognize."
-        payload: "unknown charge"
+        payload: "/SetSlots(billing_inquiry_type=unknown charge)"
       - title: "There is a double charge."
-        payload: "double billing"
+        payload: "/SetSlots(billing_inquiry_type=double billing)"
       - title: "Issuance of usage statement."
-        payload: "billing statement"
+        payload: "/SetSlots(billing_inquiry_type=billing statement)"
 
   utter_ask_statement_month:
     - text: "Which month's statement would you like to view?"
