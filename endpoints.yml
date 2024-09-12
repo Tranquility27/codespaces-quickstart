@@ -48,3 +48,4 @@ nlg:
     type: azure
     model: gpt-4o
     deployment: ai-gpt4o-poc-eus-llmchatbot
+    api_version: "2024-06-01"
