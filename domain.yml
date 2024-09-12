@@ -101,7 +101,8 @@ responses:
       - title: "There is a double charge."
         payload: "/SetSlots(billing_inquiry_type=double billing)"
       - title: "Issuance of usage statement."
-        payload: "/SetSlots(billing_inquiry_type=billing statement)"
+        # "/SetSlots(billing_inquiry_type=billing statement)"
+        payload: "billing statement"
 
   utter_ask_statement_month:
     - text: "Which month's statement would you like to view?"
