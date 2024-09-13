@@ -5,16 +5,18 @@ assistant_id: RAKUTEN_CALM_TESTING
 language: en
 pipeline:
   - name: SingleStepLLMCommandGenerator
-    flow_retrieval:
-      active: false
     # flow_retrieval:
-    #   embeddings:
-    #     provider: azure
-    #     deployment: ai-textembed3small-poc-eus-rasaembedding
-    #     api_base: https://ai-openai-poc-eus-rasaembedding.openai.azure.com/
-    #     api_type: azure
-    #     api_version: "2024-06-01"
-    #     timeout: 7
+    #   active: false
+    flow_retrieval:
+      embeddings:
+        provider: azure
+        deployment: ai-textembed3small-poc-eus-rasaembedding
+        api_base: https://ai-openai-poc-eus-rasaembedding.openai.azure.com/
+        api_type: azure
+        api_key: 44e4783649b945b8b426ceab9591278a
+        api_version: "2024-06-01"
+        timeout: 7
+      num_flows: 5
     llm:
       model: gpt-4o
       api_type: azure
