@@ -16,7 +16,7 @@ pipeline:
         api_key: 44e4783649b945b8b426ceab9591278a
         api_version: "2024-06-01"
         timeout: 7
-      # num_flows: 5
+      num_flows: 5
     llm:
       model: gpt-4o
       api_type: azure
